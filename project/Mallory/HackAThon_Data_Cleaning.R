@@ -7,6 +7,7 @@ library(dplyr)
 
 #roll up census tracts into county level data for Minority Status/Language (Theme 3) variable
 roll_up = SVI_2014 %>% 
+  filter(RPL_THEME3 > 0) %>%
   group_by(STATE, COUNTY) %>% 
   summarise(COUNTY_E_MINRTY  = sum(E_MUNIT),
             COUNTY_E_LIMENG = sum(E_LIMENG),
@@ -14,8 +15,7 @@ roll_up = SVI_2014 %>%
             COUNTY_EP_LIMENG  = sum(EP_LIMENG),
             COUNTY_EPL_MINRTY= sum(EPL_MINRTY),
             COUNTY_EPL_LIMENG = sum(EPL_LIMENG),
-            COUNTY_SPL_THEME3 =  sum(SPL_THEME3),
-            COUNTY_RPL_THEME3 = sum(RPL_THEME3)
-  )
+            COUNTY_SPL_THEME3 =  sum(SPL_THEME3)/n(),
+            COUNTY_RPL_THEME3 = sum(RPL_THEME3)/n())
 
             
