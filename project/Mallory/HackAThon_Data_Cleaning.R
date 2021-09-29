@@ -15,7 +15,9 @@ roll_up = SVI_2014 %>%
             COUNTY_EP_LIMENG  = sum(EP_LIMENG),
             COUNTY_EPL_MINRTY= sum(EPL_MINRTY),
             COUNTY_EPL_LIMENG = sum(EPL_LIMENG),
-            COUNTY_SPL_THEME3 =  sum(SPL_THEME3)/n(),
-            COUNTY_RPL_THEME3 = sum(RPL_THEME3)/n())
+            COUNTY_SPL_THEME3 =  sum(SPL_THEME3)/n())
+
+roll_up = roll_up %>% mutate(COUNTY_RPL_THEME3 = percent_rank(COUNTY_SPL_THEME3))
+
 
             
